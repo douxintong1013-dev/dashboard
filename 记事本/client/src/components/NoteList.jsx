@@ -33,7 +33,7 @@ const NoteList = ({ notes, selectedNote, onSelectNote, onDeleteNote }) => {
 
   if (!notes || notes.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-full text-gray-500 relative" style={{backgroundImage: 'url(/dd0f320453463aa10d6a2a882c10d84b.jpeg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
+      <div className="flex flex-col items-center justify-center h-full text-gray-500 relative" style={{backgroundImage: 'url(/crayon-shin-chan-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
         <div className="absolute inset-0 bg-white bg-opacity-70"></div>
         <div className="relative z-10 flex flex-col items-center">
           <DocumentTextIcon className="w-12 h-12 mb-3 text-gray-300" />
@@ -45,7 +45,7 @@ const NoteList = ({ notes, selectedNote, onSelectNote, onDeleteNote }) => {
   }
 
   return (
-    <div className="space-y-2 overflow-y-auto flex-1 min-h-0 pr-2">
+    <div className="space-y-2 overflow-y-auto h-full pr-2">
       {notes.map((note) => (
         <div
           key={note.id}
@@ -55,7 +55,7 @@ const NoteList = ({ notes, selectedNote, onSelectNote, onDeleteNote }) => {
             ${
               selectedNote?.id === note.id
                 ? 'bg-gradient-to-br from-primary-50 via-white to-accent-50 border-primary-300 shadow-lg ring-2 ring-primary-200'
-                : 'bg-gradient-to-br from-white to-gray-50 border-gray-200 hover:border-primary-200 hover:shadow-md hover:bg-gradient-to-br hover:from-primary-100 hover:to-white'
+                : 'bg-gradient-to-br from-white to-gray-50 border-gray-200 hover:border-primary-200 hover:shadow-md hover:bg-gradient-to-br hover:from-primary-25 hover:to-white'
             }
           `}
         >

@@ -6,39 +6,22 @@ const CalendarWidget = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const apiUrl = 'https://21st.dev/r/designali-in/calendar?api_key=eyJhbGciOiJSUzI1NiIsImNhdCI6ImNsX0I3ZDRQRDIyMkFBQSIsImtpZCI6Imluc18ybXdGd3U1cW5FQXozZ1U2dmxnMW13ZU1PZEoiLCJ0eXAiOiJKV1QifQ.eyJhenAiOiJodHRwczovLzIxc3QuZGV2IiwiZXhwIjoxNzU4MDg3NjYzLCJpYXQiOjE3NTgwODY3NjMsImlzcyI6Imh0dHBzOi8vY2xlcmsuMjFzdC5kZXYiLCJqdGkiOiIzOTM1MzU2M2I2MWI0ZDUyNTg4YiIsIm5iZiI6MTc1ODA4Njc1OCwic3ViIjoidXNlcl8zMm9WNDlsWUNRTVNobmlZUkJyS1oxcXBKSm0ifQ.ZvgnOjfRAgzlTmLrNw6_Vx6yM9SgIb0-vj-C6tUKJnYXE_AdT8W00DxtANZwbkLFFVDD7HVdvhZ4A_tG3VqHc581ljkF1OmCeeMRf4NU7d6hEGbn3s7ikZzGPlZG-LwMxb69VhCfuHL2BB_FkObu_eK48ZjO7WnkIrpudl1J_UxIVp6HR6fJWDZ1czPX4GrI_PNRDOes-tTZNLerVgLHSi9S1ci-0dBplWSBfj6s3rAOAH8ZOzLYvpHCsMQsDEi3NGSSzmI3yWdsFVb1_Ms22oaOJ7cDq_6zKUaWzRuebYil6ePEvEudf4EKPpfL8_ZbUUull1WzB-mr_0Tn7fgLKA'
+  // 使用本地日历数据以避免外部网络错误，恢复到之前的稳定版本
+  // const apiUrl = 'https://21st.dev/r/designali-in/calendar?...' // 已禁用外部请求
 
   useEffect(() => {
     fetchCalendarData()
   }, [])
 
   const fetchCalendarData = async () => {
-    try {
-      setLoading(true)
-      // 由于API可能需要特殊处理，我们先创建一个基础的日历显示
-      // 如果API可用，可以替换为实际的API调用
-      const response = await fetch(apiUrl)
-      if (response.ok) {
-        const data = await response.json()
-        setCalendarData(data)
-      } else {
-        // 如果API不可用，使用本地日历数据
-        setCalendarData({
-          currentMonth: currentDate.getMonth(),
-          currentYear: currentDate.getFullYear(),
-          today: new Date().getDate()
-        })
-      }
-    } catch (err) {
-      console.log('使用本地日历数据')
-      setCalendarData({
-        currentMonth: currentDate.getMonth(),
-        currentYear: currentDate.getFullYear(),
-        today: new Date().getDate()
-      })
-    } finally {
-      setLoading(false)
-    }
+    // 直接使用本地日历数据，避免外部请求导致的 net::ERR_FAILED
+    setLoading(true)
+    setCalendarData({
+      currentMonth: currentDate.getMonth(),
+      currentYear: currentDate.getFullYear(),
+      today: new Date().getDate()
+    })
+    setLoading(false)
   }
 
   const getDaysInMonth = (date) => {
@@ -95,7 +78,7 @@ const CalendarWidget = () => {
 
   if (loading) {
     return (
-      <div className="p-3 bg-gradient-to-r from-blue-300 to-blue-400 rounded-full border-[3px] border-blue-500 shadow-lg">
+      <div className="p-3 bg-gradient-to-r from-blue-300 to-blue-400 rounded-full border-3 border-blue-500 shadow-lg">
         <div className="animate-spin w-6 h-6 border-2 border-white border-t-transparent rounded-full"></div>
       </div>
     )
@@ -103,7 +86,7 @@ const CalendarWidget = () => {
 
   return (
     <div className="relative group">
-      <div className="p-3 bg-gradient-to-r from-blue-300 to-blue-400 hover:from-blue-400 hover:to-blue-500 rounded-full border-[3px] border-blue-500 shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 cursor-pointer">
+      <div className="p-3 bg-gradient-to-r from-blue-300 to-blue-400 hover:from-blue-400 hover:to-blue-500 rounded-full border-3 border-blue-500 shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 cursor-pointer">
         <span className="text-xl">📅</span>
       </div>
       

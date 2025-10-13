@@ -123,29 +123,14 @@ cd ..
 echo "⏳ 等待前端服务启动..."
 sleep 3
 
-# 检查前端服务是否启动成功（多次尝试，检查多个可能的端口）
+# 检查前端服务是否启动成功（多次尝试，仅检查固定端口3001）
 FRONTEND_READY=false
 FRONTEND_URL=""
 for i in {1..15}; do
-    # 检查3000端口
-    if curl -s http://localhost:3000 > /dev/null 2>&1; then
-        echo "✅ 前端服务启动成功 (PID: $CLIENT_PID) - 端口: 3000"
-        FRONTEND_READY=true
-        FRONTEND_URL="http://localhost:3000"
-        break
-    fi
-    # 检查3001端口
     if curl -s http://localhost:3001 > /dev/null 2>&1; then
         echo "✅ 前端服务启动成功 (PID: $CLIENT_PID) - 端口: 3001"
         FRONTEND_READY=true
         FRONTEND_URL="http://localhost:3001"
-        break
-    fi
-    # 检查5173端口（Vite默认端口）
-    if curl -s http://localhost:5173 > /dev/null 2>&1; then
-        echo "✅ 前端服务启动成功 (PID: $CLIENT_PID) - 端口: 5173"
-        FRONTEND_READY=true
-        FRONTEND_URL="http://localhost:5173"
         break
     fi
     echo "⏳ 等待前端服务启动... ($i/15)"

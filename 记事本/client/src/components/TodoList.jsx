@@ -16,7 +16,7 @@ const TodoList = () => {
   const fetchTodos = async () => {
     try {
       setIsLoading(true)
-      const response = await fetch('/api/todos')
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || ''}/api/todos`)
       const data = await response.json()
       if (data.success) {
         setTodos(data.todos)
@@ -36,7 +36,7 @@ const TodoList = () => {
     if (!newTodo.trim()) return
 
     try {
-      const response = await fetch('/api/todos', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || ''}/api/todos`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const TodoList = () => {
   // 切换完成状态
   const toggleTodo = async (todoId, completed) => {
     try {
-      const response = await fetch(`/api/todos/${todoId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || ''}/api/todos/${todoId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ const TodoList = () => {
   // 删除待办事项
   const deleteTodo = async (todoId) => {
     try {
-      const response = await fetch(`/api/todos/${todoId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || ''}/api/todos/${todoId}`, {
         method: 'DELETE',
       })
 
