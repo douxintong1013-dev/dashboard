@@ -3,57 +3,7 @@
 > vite
 
 
-  VITE v5.4.19  ready in 137 ms
-
-  ➜  Local:   http://localhost:3001/
-  ➜  Network: use --host to expose
-16:10:02 [vite] hmr update /src/components/CalendarWidget.jsx, /src/index.css
-16:10:02 [vite] hmr update /src/components/CalendarWidget.jsx, /src/index.css
-17:22:58 [vite] hmr update /src/App.jsx, /src/index.css
-17:22:58 [vite] hmr update /src/App.jsx, /src/index.css
-17:23:03 [vite] vite.config.js changed, restarting server...
-17:23:03 [vite] server restarted.
+  VITE v5.4.19  ready in 245 ms
 
   ➜  Local:   http://localhost:3001/dashboard/
   ➜  Network: use --host to expose
-17:23:14 [vite] hmr update /src/pages/NotebookPage.jsx, /src/index.css
-17:23:26 [vite] hmr update /src/components/AIAssistant.jsx, /src/index.css
-17:23:43 [vite] hmr update /src/pages/SettingsPage.jsx, /src/index.css
-17:23:43 [vite] hmr update /src/pages/SettingsPage.jsx, /src/index.css
-17:23:54 [vite] hmr update /src/components/TodoList.jsx, /src/index.css
-17:23:54 [vite] hmr update /src/components/TodoList.jsx, /src/index.css
-17:24:38 [vite] hmr update /src/components/NoteEditor.jsx, /src/index.css
-17:24:38 [vite] hmr update /src/components/NoteEditor.jsx, /src/index.css
-17:43:39 [vite] vite.config.js changed, restarting server...
-▲ [WARNING] Duplicate key "build" in object literal [duplicate-object-key]
-
-    vite.config.js:21:2:
-      21 │   build: {
-         ╵   ~~~~~
-
-  The original key "build" is here:
-
-    vite.config.js:8:2:
-      8 │   build: {
-        ╵   ~~~~~
-
-Re-optimizing dependencies because lockfile has changed
-17:43:39 [vite] server restarted.
-17:43:39 [vite] vite.config.js changed, restarting server...
-▲ [WARNING] Duplicate key "build" in object literal [duplicate-object-key]
-
-    vite.config.js:21:2:
-      21 │   build: {
-         ╵   ~~~~~
-
-  The original key "build" is here:
-
-    vite.config.js:8:2:
-      8 │   build: {
-        ╵   ~~~~~
-
-✘ [ERROR] The build was canceled
-
-17:43:39 [vite] server restarted.
-17:44:31 [vite] vite.config.js changed, restarting server...
-17:44:31 [vite] server restarted.
