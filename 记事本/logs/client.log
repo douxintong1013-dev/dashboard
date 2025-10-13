@@ -2,14 +2,9 @@
 > ai-notebook-client@0.0.0 dev
 > vite
 
+Re-optimizing dependencies because vite config has changed
 
-  VITE v5.4.19  ready in 409 ms
+  VITE v5.4.19  ready in 860 ms
 
   ➜  Local:   http://localhost:3000/
   ➜  Network: use --host to expose
-19:51:21 [vite] hmr update /src/components/PomodoroTimer.jsx, /src/index.css
-19:52:45 [vite] hmr update /src/components/PomodoroTimer.jsx, /src/index.css
-18:54:01 [vite] hmr update /src/App.jsx, /src/index.css
-18:54:01 [vite] hmr update /src/components/CalendarWidget.jsx, /src/index.css
-18:54:01 [vite] hmr update /src/components/Layout.jsx, /src/index.css
-18:54:01 [vite] hmr update /src/pages/ProjectManagementPage.jsx, /src/index.css
