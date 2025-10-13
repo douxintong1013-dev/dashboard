@@ -1,0 +1,38 @@
+
+> ai-notebook-server@1.0.0 start
+> node index.js
+
+⚠️  警告: 未设置ENCRYPTION_KEY环境变量，使用临时密钥
+⚠️  建议在.env文件中设置ENCRYPTION_KEY以确保数据持久性
+🚀 服务器运行在端口 5001
+📝 记事本API: http://localhost:5001/api/notes
+🤖 AI助手API: http://localhost:5001/api/ai
+💚 健康检查: http://localhost:5001/health
+🔧 开发模式已启用
+✅ 数据库连接成功
+✅ 数据库连接成功
+✅ 数据库连接成功
+✅ notes表创建成功
+✅ notes表创建成功
+✅ notes表创建成功
+解密失败: Error: error:1C800064:Provider routines::bad decrypt
+    at Decipheriv.final (node:internal/crypto/cipher:184:29)
+    at SettingsService.decrypt (file:///Users/douxintong/Documents/%E8%AE%B0%E4%BA%8B%E6%9C%AC/server/services/settingsService.js:61:29)
+    at SettingsService.getApiKey (file:///Users/douxintong/Documents/%E8%AE%B0%E4%BA%8B%E6%9C%AC/server/services/settingsService.js:94:21)
+    at async AIService.initializeOpenAI (file:///Users/douxintong/Documents/%E8%AE%B0%E4%BA%8B%E6%9C%AC/server/services/aiService.js:14:22) {
+  library: 'Provider routines',
+  reason: 'bad decrypt',
+  code: 'ERR_OSSL_BAD_DECRYPT'
+}
+获取API密钥失败: Error: 数据解密失败
+    at SettingsService.decrypt (file:///Users/douxintong/Documents/%E8%AE%B0%E4%BA%8B%E6%9C%AC/server/services/settingsService.js:66:13)
+    at SettingsService.getApiKey (file:///Users/douxintong/Documents/%E8%AE%B0%E4%BA%8B%E6%9C%AC/server/services/settingsService.js:94:21)
+    at async AIService.initializeOpenAI (file:///Users/douxintong/Documents/%E8%AE%B0%E4%BA%8B%E6%9C%AC/server/services/aiService.js:14:22)
+⚠️  Kimi API密钥未设置，AI功能将不可用
+✅ settings表创建成功
+✅ settings表创建成功
+✅ settings表创建成功
+✅ todos表创建成功
+✅ todos表创建成功
+✅ todos表创建成功
+收到SIGTERM信号，正在关闭服务器...

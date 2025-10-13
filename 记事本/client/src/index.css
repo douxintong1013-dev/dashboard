@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  body {
+    @apply text-gray-800 font-cute;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    min-height: 100vh;
+    position: relative;
+  }
+
+
+
+
+  
+  /* 确保输入元素可以正常选择和粘贴 */
+  input, textarea {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    pointer-events: auto !important;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-2xl text-sm font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-300 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none transform hover:scale-110 hover:rotate-1 shadow-lg;
+    font-family: 'Comic Sans MS', 'Marker Felt', cursive;
+    border: 3px solid transparent;
+  }
+  
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-primary-400 to-primary-600 text-gray-800 hover:from-primary-500 hover:to-primary-700 shadow-xl hover:shadow-2xl;
+    border-color: #ffd700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  }
+  
+  .btn-secondary {
+    @apply btn bg-gradient-to-r from-accent-200 to-accent-400 text-white hover:from-accent-300 hover:to-accent-500 shadow-xl hover:shadow-2xl;
+    border-color: #f97316;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  }
+  
+  .btn-ghost {
+    @apply btn text-primary-700 hover:bg-gradient-to-r hover:from-primary-100 hover:to-accent-100 hover:text-primary-800 shadow-md hover:shadow-xl;
+    border-color: #ffd700;
+  }
+  
+  .btn-success {
+    @apply btn bg-gradient-to-r from-success-500 to-success-600 text-white hover:from-success-600 hover:to-success-700 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-warning {
+    @apply btn bg-gradient-to-r from-warning-500 to-warning-600 text-white hover:from-warning-600 hover:to-warning-700 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-error {
+    @apply btn bg-gradient-to-r from-error-500 to-error-600 text-white hover:from-error-600 hover:to-error-700 shadow-lg hover:shadow-xl;
+  }
+  
+  .input {
+    @apply flex h-10 w-full rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-50 px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:border-primary-300 focus-visible:bg-white disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 hover:shadow-md;
+  }
+  
+  .textarea {
+    @apply flex min-h-[80px] w-full rounded-lg border border-gray-300 px-3 py-2 text-sm ring-offset-white placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:border-primary-300 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 hover:shadow-md;
+    background-image: url('/crayon-shin-chan-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: local;
+    color: #2d3748;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  }
+  
+  #content-textarea {
+    background-image: url('/7de86bd5382efa0b37ad71317c7fa2cc.jpeg') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: local;
+    color: #2d3748;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  }
+  
+  .card {
+    @apply bg-white/80 backdrop-blur-md border border-orange-200/50 rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl;
+    background-image: radial-gradient(circle at 20% 80%, rgba(255, 224, 102, 0.2) 0%, transparent 50%);
+    position: relative;
+    border: 2px solid rgba(255, 165, 0, 0.3);
+  }
+  
+  .card::before {
+    content: '🌟';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+    opacity: 0.8;
+  }
+  
+  .card-highlight {
+    @apply bg-yellow-50/85 backdrop-blur-md border-yellow-300/60 shadow-xl;
+    background-image: radial-gradient(circle at 20% 80%, rgba(255, 193, 7, 0.2) 0%, transparent 50%);
+    border: 2px solid rgba(255, 193, 7, 0.4);
+    position: relative;
+  }
+  
+  .card-highlight::before {
+    content: '⭐';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
+    opacity: 0.9;
+  }
+  
+  .card-success {
+    @apply bg-green-50/85 backdrop-blur-md border-green-300/60 shadow-xl;
+    background-image: radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.2) 0%, transparent 50%);
+    border: 2px solid rgba(34, 197, 94, 0.4);
+    position: relative;
+  }
+  
+  .card-success::before {
+    content: '🎉';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
+    opacity: 0.9;
+  }
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #fbbf24, #f59e0b);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #f59e0b, #d97706);
+}
+
+/* 蜡笔小新动画效果 */
+@keyframes crayon-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-5px) rotate(1deg); }
+  50% { transform: translateY(-10px) rotate(0deg); }
+  75% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+@keyframes crayon-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(1deg); }
+  75% { transform: rotate(-1deg); }
+}
+
+@keyframes crayon-rainbow {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+@keyframes crayon-bounce-in {
+  0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+  50% { transform: scale(1.1) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes crayon-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* 应用动画到元素 */
+.animate-crayon-float {
+  animation: crayon-float 3s ease-in-out infinite;
+}
+
+.animate-crayon-wiggle {
+  animation: crayon-wiggle 2s ease-in-out infinite;
+}
+
+.animate-crayon-rainbow {
+  animation: crayon-rainbow 4s linear infinite;
+}
+
+.animate-crayon-bounce-in {
+  animation: crayon-bounce-in 0.6s ease-out;
+}
+
+.animate-crayon-pulse {
+  animation: crayon-pulse 2s ease-in-out infinite;
+}
