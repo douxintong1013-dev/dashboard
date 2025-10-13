@@ -22,7 +22,7 @@ const SettingsPage = () => {
 
   const checkExistingKey = async () => {
     try {
-      const response = await fetch('/api/ai/status')
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || ''}/api/ai/status`)
       const data = await response.json()
       setHasExistingKey(data.hasApiKey)
     } catch (error) {
@@ -39,7 +39,7 @@ const SettingsPage = () => {
 
     setIsSaving(true)
     try {
-      const response = await fetch('/api/ai/set-key', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || ''}/api/ai/set-key`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ const SettingsPage = () => {
 
     setIsSaving(true)
     try {
-      const response = await fetch('/api/ai/remove-key', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || ''}/api/ai/remove-key`, {
         method: 'DELETE'
       })
 

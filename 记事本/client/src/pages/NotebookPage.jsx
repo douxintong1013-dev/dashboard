@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import NoteList from '../components/NoteList'
 import NoteEditor from '../components/NoteEditor'
+import AIAssistant from '../components/AIAssistant'
+import TodoList from '../components/TodoList'
 import SearchBar from '../components/SearchBar'
+import { PlusIcon, SparklesIcon, ListBulletIcon } from '@heroicons/react/24/outline'
+import shinChanBeachImg from '../assets/shin-chan-beach.jpg'
 // 使用浏览器原生的crypto API生成UUID
 const generateId = () => {
   return crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).substr(2)
@@ -14,6 +18,7 @@ const NotebookPage = () => {
   const [searchResults, setSearchResults] = useState([])
   const [isSearching, setIsSearching] = useState(false)
   const [isSemanticSearch, setIsSemanticSearch] = useState(false)
+  const [rightPanelTab, setRightPanelTab] = useState('ai') // 'ai' 或 'todos'
 
   // 从localStorage加载笔记
   useEffect(() => {
@@ -106,7 +111,7 @@ const NotebookPage = () => {
 
     setIsSearching(true)
     try {
-      const response = await fetch('/api/ai/semantic-search', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || ''}/api/ai/semantic-search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -153,7 +158,7 @@ const NotebookPage = () => {
   }
 
   return (
-    <div className="flex bg-gray-100 min-h-0">
+    <div className="h-[85vh] flex bg-gray-100">
       {/* 左侧笔记列表 */}
       <div className="w-80 border-r border-accent-200 flex flex-col bg-white shadow-sm">
         <div className="p-4 border-b border-accent-200">
@@ -162,7 +167,7 @@ const NotebookPage = () => {
             className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary-700 text-white rounded-xl hover:bg-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-bold"
           >
             <span className="text-lg">📝</span>
-            新建笔记
+            小新的新笔记！
           </button>
         </div>
         
@@ -187,28 +192,85 @@ const NotebookPage = () => {
       </div>
 
       {/* 中间编辑器 */}
-      <div className="flex-1 flex flex-col bg-white border-l border-r border-gray-200">
+      <div className="flex-1 flex flex-col relative" style={{backgroundImage: `url(/4faa645a7d2e1fdb88bb59ec0833f83b.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
+        <div className="absolute inset-0 bg-white bg-opacity-70"></div>
+        <div className="relative z-10 flex-1 flex flex-col">
         {selectedNote ? (
           <NoteEditor
             note={selectedNote}
             onUpdateNote={updateNote}
           />
         ) : (
-          <div className="flex-1 flex items-center justify-center">
-            <div className="text-center">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">欢迎使用记事本</h3>
-              <p className="text-gray-600 mb-4 max-w-md">创建你的第一条笔记，开始记录吧。</p>
+          <div className="flex-1 flex items-center justify-center relative">
+            <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+            <div className="text-center relative z-10">
+              <div className="w-24 h-24 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl border-4 border-yellow-300 animate-crayon-float">
+                <span className="text-4xl animate-crayon-rainbow">🖍️</span>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-3 font-crayon drop-shadow-lg">
+                🌟 开始你的超级记事本冒险吧！🌟
+              </h3>
+              <p className="text-white mb-6 max-w-md font-cute text-lg drop-shadow-lg">
+                小新说："记笔记是很重要的哦！快来写下你的想法吧！" 📝✨
+              </p>
+              <div className="mb-4 p-3 bg-yellow-100 rounded-lg border-2 border-yellow-300 animate-crayon-bounce-in">
+                <p className="text-sm text-yellow-700 font-bold font-cute">💡 小新提示："动感超人也会记笔记哦！"</p>
+              </div>
               <button
                 onClick={createNewNote}
-                className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold"
+                className="btn btn-primary px-8 py-4 text-lg font-bold transform hover:scale-105 transition-all duration-300"
               >
-                新建笔记
+                <span className="text-xl mr-2">✏️</span>
+                开始写笔记啦！
               </button>
             </div>
           </div>
         )}
         </div>
+      </div>
 
+      {/* 右侧面板 */}
+      <div className="w-80 border-l border-primary-200 bg-gradient-to-b from-white to-purple-50 shadow-lg flex flex-col">
+        {/* 标签页头部 */}
+        <div className="flex border-b border-primary-200 bg-white">
+          <button
+            onClick={() => setRightPanelTab('ai')}
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold transition-all duration-300 font-cute ${
+              rightPanelTab === 'ai'
+                ? 'text-primary-700 bg-primary-50 border-b-4 border-primary-700 transform scale-105'
+                : 'text-gray-600 hover:text-primary-600 hover:bg-primary-25 hover:scale-105'
+            }`}
+          >
+            <span className="text-lg">🤖</span>
+            小新AI助手
+          </button>
+          <button
+            onClick={() => setRightPanelTab('todos')}
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold transition-all duration-300 font-cute ${
+              rightPanelTab === 'todos'
+                ? 'text-primary-700 bg-primary-50 border-b-4 border-primary-700 transform scale-105'
+                : 'text-gray-600 hover:text-primary-600 hover:bg-primary-25 hover:scale-105'
+            }`}
+          >
+            <span className="text-lg">📋</span>
+            小新的任务
+          </button>
+        </div>
+        
+        {/* 标签页内容 */}
+        <div className="flex-1 overflow-hidden">
+          {rightPanelTab === 'ai' ? (
+            <AIAssistant
+              selectedNote={selectedNote}
+              onClose={() => {}}
+              onUpdateNote={updateNote}
+              isAlwaysVisible={true}
+            />
+          ) : (
+            <TodoList />
+          )}
+        </div>
+      </div>
     </div>
   )
 }

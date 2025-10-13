@@ -202,7 +202,7 @@ const PomodoroTimer = () => {
     <div className="fixed bottom-20 left-4 z-50">
       {/* 调色盘选择器 */}
        {showColorPicker && (
-         <div className="mb-2 bg-white rounded-lg shadow-lg border border-gray-200 p-3 transition-all duration-200">
+         <div className="mb-2 bg-white rounded-lg shadow-lg border border-gray-200 p-3 animate-in slide-in-from-bottom-2 duration-200">
           <div className="text-xs font-medium text-gray-700 mb-2 text-center">选择主题</div>
           <div className="grid grid-cols-3 gap-2">
             {Object.entries(themes).map(([key, theme]) => (

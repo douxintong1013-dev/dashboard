@@ -155,7 +155,7 @@ const NoteEditor = ({ note, onUpdateNote }) => {
     setIsRewriting(true)
     setShowRewriteMenu(false)
     try {
-      const response = await fetch('/api/ai/rewrite', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || ''}/api/ai/rewrite`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -187,7 +187,7 @@ const NoteEditor = ({ note, onUpdateNote }) => {
     setIsGeneratingTags(true)
     
     try {
-      const response = await fetch('/api/ai/generate-tags', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || ''}/api/ai/generate-tags`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

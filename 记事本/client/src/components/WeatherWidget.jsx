@@ -145,7 +145,7 @@ const WeatherWidget = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center space-x-3 bg-gradient-to-r from-blue-200 to-blue-300 px-4 py-2 rounded-full border-[3px] border-blue-400 shadow-lg animate-pulse">
+      <div className="flex items-center space-x-3 bg-gradient-to-r from-blue-200 to-blue-300 px-4 py-2 rounded-full border-3 border-blue-400 shadow-lg animate-pulse">
         <span className="text-lg">🌤️</span>
         <span className="text-sm font-bold text-blue-800 font-cute">获取天气中...</span>
       </div>
@@ -154,7 +154,7 @@ const WeatherWidget = () => {
 
   if (error) {
     return (
-      <div className="flex items-center space-x-3 bg-gradient-to-r from-red-200 to-red-300 px-4 py-2 rounded-full border-[3px] border-red-400 shadow-lg">
+      <div className="flex items-center space-x-3 bg-gradient-to-r from-red-200 to-red-300 px-4 py-2 rounded-full border-3 border-red-400 shadow-lg">
         <span className="text-lg">❌</span>
         <span className="text-sm font-bold text-red-800 font-cute">天气获取失败</span>
       </div>
@@ -166,7 +166,7 @@ const WeatherWidget = () => {
 
   return (
     <div 
-      className={`flex items-center space-x-3 bg-gradient-to-r ${theme.bg} px-4 py-2 rounded-full border-[3px] ${theme.border} ${theme.shadow} shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group`}
+      className={`flex items-center space-x-3 bg-gradient-to-r ${theme.bg} px-4 py-2 rounded-full border-3 ${theme.border} ${theme.shadow} shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group`}
       onClick={fetchWeather}
       title="点击刷新天气"
     >
