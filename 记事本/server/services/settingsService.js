@@ -19,6 +19,12 @@ export class SettingsService {
     return key
   }
 
+  // 新增：从环境变量获取API密钥（不持久化，仅读取）
+  getEnvApiKey() {
+    const envKey = (process.env.KIMI_API_KEY || process.env.OPENAI_API_KEY || '').trim()
+    return envKey.length > 0 ? envKey : null
+  }
+
   // 加密数据
   encrypt(text) {
     try {
@@ -80,20 +86,39 @@ export class SettingsService {
     }
   }
 
-  // 获取API密钥
+  // 获取API密钥（新增：当数据库没有时，自动从环境变量读取并持久化）
   async getApiKey() {
     try {
       const setting = await this.db.getSetting('kimi_api_key')
       
       if (!setting || !setting.value) {
+        const envKey = this.getEnvApiKey()
+        if (envKey) {
+          // 持久化保存到数据库（加密）
+          await this.setApiKey(envKey)
+          return envKey
+        }
         return null
       }
       
-      if (setting.encrypted) {
-        const encryptedData = JSON.parse(setting.value)
-        return this.decrypt(encryptedData)
-      } else {
-        return setting.value
+      // 尝试解密/返回存储的密钥；若失败，执行回退逻辑
+      try {
+        if (setting.encrypted) {
+          const encryptedData = JSON.parse(setting.value)
+          return this.decrypt(encryptedData)
+        } else {
+          return setting.value
+        }
+      } catch (decryptError) {
+        console.error('解密API密钥失败，尝试使用环境变量进行修复:', decryptError)
+        const envKey = this.getEnvApiKey()
+        if (envKey) {
+          // 使用当前环境变量密钥覆盖数据库中的损坏值
+          await this.setApiKey(envKey)
+          console.warn('✅ 已使用环境变量中的API密钥替换数据库中的损坏值')
+          return envKey
+        }
+        return null
       }
     } catch (error) {
       console.error('获取API密钥失败:', error)
@@ -126,8 +151,22 @@ export class SettingsService {
 
   // 初始化API密钥（已废弃，保留兼容性）
   async initializeApiKey() {
-    // 此方法已废弃，因为现在直接从数据库获取API密钥
-    // 保留此方法以确保向后兼容性
+    try {
+      // 通过 getApiKey() 获取（包含解密失败回退逻辑）
+      const currentKey = await this.getApiKey()
+      if (currentKey) {
+        return
+      }
+      const envKey = this.getEnvApiKey()
+      if (envKey) {
+        await this.setApiKey(envKey)
+        console.log('✅ 已从环境变量初始化或修复Kimi API密钥')
+      } else {
+        console.warn('⚠️ 未检测到KIMI_API_KEY/OPENAI_API_KEY环境变量，AI功能将不可用，您可通过 /api/ai/set-key 设置')
+      }
+    } catch (error) {
+      console.error('初始化API密钥失败:', error)
+    }
   }
 
   // 设置通用配置

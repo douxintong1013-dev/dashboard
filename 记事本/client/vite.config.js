@@ -14,7 +14,8 @@ export default defineConfig({
     strictPort: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:5001',
+        // 后端当前运行在 5003 端口
+        target: 'http://localhost:5003',
         changeOrigin: true
       }
     }

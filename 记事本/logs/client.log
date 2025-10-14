@@ -14,3 +14,5 @@
   ➜  Network: use --host to expose
 10:54:06 [vite] hmr update /src/components/NoteEditor.jsx, /src/index.css
 10:54:07 [vite] hmr update /src/components/NoteEditor.jsx, /src/index.css
+12:35:50 [vite] vite.config.js changed, restarting server...
+12:35:50 [vite] server restarted.
