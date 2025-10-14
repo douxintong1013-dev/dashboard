@@ -123,7 +123,7 @@ const NoteEditor = ({ note, onUpdateNote }) => {
 
     setIsPolishing(true)
     try {
-      const response = await fetch('/api/ai/polish', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || ''}/api/ai/polish`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
